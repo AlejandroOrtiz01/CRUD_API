@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>CINEPOLIS</title>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+  <h5 class="text-3xl font-bold text-center p-5 uppercase">Cartelera</h5>
+
+  <!-- Input de búsqueda -->
+  <div class="flex justify-center p-4">
+    <input 
+      id="search-input" 
+      type="text" 
+      placeholder="Buscar por título..." 
+      class="p-2 w-full max-w-md rounded-lg text-gray-900"
+    />
+  </div>
+
+  <div class="gap-4 max-w-screen-xl mx-auto p-5">
+    <!-- Botón para abrir el modal -->
+    <button id="open-modal" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Crear cartelera
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 hidden">
+    <div class="bg-gray-900 text-white font-sans rounded-lg shadow-lg p-8 w-full max-w-lg">
+      <h2 class="text-2xl font-bold mb-4">Crear Nueva Cartelera</h2>
+      <!-- Formulario para crear cartelera -->
+      <form id="create-cartelera-form">
+        <div class="mb-4">
+          <label for="title" class="block">Título:</label>
+          <input type="text" id="title" name="title" class="w-full p-2 text-gray-900 border rounded" required>
+        </div>
+        <div class="mb-4">
+          <label for="year" class="block">Año:</label>
+          <input type="text" id="year" name="year" class="w-full p-2 text-gray-900 border rounded" required>
+        </div>
+        <div class="mb-4">
+          <label for="type" class="block">Tipo:</label>
+          <input type="text" id="type" name="type" class="w-full p-2 text-gray-900 border rounded" required>
+        </div>
+        <div class="mb-4">
+          <label for="poster" class="block">URL del Poster:</label>
+          <input type="text" id="poster" name="poster" class="w-full p-2 text-gray-900 border rounded" required>
+        </div>
+        <div class="mb-4">
+          <label for="description" class="block">Descripción:</label>
+          <textarea id="description" name="description" class="w-full p-2 text-gray-900 border rounded" required></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="ubication" class="block">Ubicación:</label>
+          <input type="text" id="ubication" name="ubication" class="w-full p-2 text-gray-900 border rounded" required>
+        </div>
+        <div class="flex justify-end">
+          <button type="button" id="close-modal" class="mr-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancelar</button>
+          <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="cards-container grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 max-w-screen-xl mx-auto p-5">
+  </div>
+
+  <script type="module" src="./src/movie.js"></script>
+  <script type="module" src="./src/crear-cartelera.js"></script>
+
+  <!-- Script para manejar el modal -->
+  <script>
+    // Obtener los elementos del DOM
+    const openModalButton = document.getElementById('open-modal');
+    const closeModalButton = document.getElementById('close-modal');
+    const modal = document.getElementById('modal');
+
+    // Función para abrir el modal
+    openModalButton.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+
+    // Función para cerrar el modal
+    closeModalButton.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>
